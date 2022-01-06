@@ -17,14 +17,16 @@ async function main() {
 	const usersCollection = db.collection('users');
 
 	// Insert a Document
+	// const insertResult = 
 	await usersCollection.insertOne({
 		name: 'Mansour Koura',
 		age: 22,
-	})
+	}).then(({ insertedId }) => console.log(insertedId))
+	// console.log(insertResult);
 
-	// Find All Documents
-	const findResult = await usersCollection.find({}).toArray();
-	console.log('Found documents =>', findResult);
+	// // Find All Documents
+	// const findResult = await usersCollection.find({}).toArray();
+	// console.log('Found documents =>', findResult);
 
 	// // Update a document
 	// const updateResult = await usersCollection.updateOne({ a: 3 }, { $set: { b: 1 } });
