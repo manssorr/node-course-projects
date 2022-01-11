@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb'
+import { MongoClient, ObjectId } from 'mongodb'
 // DATA
 const many = [{
 	name: 'Mansour Koura',
@@ -14,6 +14,16 @@ const many = [{
 	age: 24,
 }];
 
+const tasks = [{
+	description: 'Done 18 Node',
+	completed: false,
+}, {
+	description: 'Done 19 Node',
+	completed: false,
+}, {
+	description: 'Done 20 Node',
+	completed: false,
+}]
 
 // Connection URL
 const url = 'mongodb://localhost:27017';
@@ -23,7 +33,7 @@ const client = new MongoClient(url);
 const dbName = 'task-manager';
 
 async function main() {
-	// Use connect method to connect to the server
+
 	// Use connect method to connect to the server
 	await client.connect();
 	console.log('Connected successfully to database');
@@ -32,20 +42,27 @@ async function main() {
 	const usersCollection = db.collection('users');
 	const tasksCollection = db.collection('tasks');
 
-	// Insert a Document
-	await usersCollection.insertOne({
-		name: 'Mansour Koura',
-		age: 22,
-	}).then(({ insertedId }) => console.log(insertedId))
-		.catch('Unable to insert Doc!')
+	// // Insert a Document
+	// await usersCollection.insertOne({
+	// 	name: 'Mansour Koura',
+	// 	age: 22,
+	// }).then(({ insertedId }) => console.log(insertedId))
+	// 	.catch('Unable to insert Doc!')
 
-	await usersCollection.insertMany(many).then(({ insertedCount, insertedIds }) => console.log(`Insrted users num: ${insertedCount}`, insertedIds))
-		.catch('Unable to insert Doc!')
+	// await usersCollection.insertMany(many).then(({ insertedCount, insertedIds }) => {
+	// 	console.log(insertedCount, insertedIds)
+	// })
+	// 	.catch('Unable to insert Doc!');
+
+	// await tasksCollection.insertMany(tasks).then(({ insertedCount, insertedIds }) => {
+	// 	console.log(insertedCount, insertedIds)
+	// })
+	// 	.catch('Unable to insert Doc!');
 
 
-	// // Find All Documents
-	// const findResult = await usersCollection.find({}).toArray();
-	// console.log('Found documents =>', findResult);
+	// Find All Documents
+	await usersCollection.findOne({}).then((findResult)=> console.log('One Found documents =>', findResult) )
+	await usersCollection.find({}).toArray().then((findResult)=> console.log('All Found documents =>', findResult) )
 
 	// // Update a document
 	// const updateResult = await usersCollection.updateOne({ a: 3 }, { $set: { b: 1 } });
