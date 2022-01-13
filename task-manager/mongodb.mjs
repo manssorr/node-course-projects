@@ -61,12 +61,23 @@ async function main() {
 
 
 	// Find All Documents
-	await usersCollection.findOne({}).then((findResult)=> console.log('One Found documents =>', findResult) )
-	await usersCollection.find({}).toArray().then((findResult)=> console.log('All Found documents =>', findResult) )
+	await usersCollection.findOne({
+		_id: new ObjectId("61daf8da3cfbe1e13988e843")
+	})
+		.then((findResult) => console.log('Found documents =>', findResult))
+		.catch(error => console.log(error))
+	// await tasksCollection.find({ completed: false }).toArray().then((findResult) => { console.log('All Found documents =>', findResult) })
 
-	// // Update a document
-	// const updateResult = await usersCollection.updateOne({ a: 3 }, { $set: { b: 1 } });
-	// console.log('Updated documents =>', updateResult);
+	// Update a document
+	await usersCollection.updateOne({
+		_id: new ObjectId("61daf8da3cfbe1e13988e843")
+	}, {
+		$set: {
+			name: 'Mansour Basha'
+		}
+	})
+		.then((updateResult) => console.log('Updated =>', updateResult))
+		.catch(error => console.log(error))
 
 	// // Remove a document
 	// const deleteResult = await usersCollection.deleteMany({ a: 3 });
