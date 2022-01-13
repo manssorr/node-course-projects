@@ -49,7 +49,10 @@ async function main() {
 			type: String,
 			trim: true,
 		},
-		completed: Boolean,
+		completed: {
+			type: Boolean,
+			default: false,
+		},
 	})
 
 	// Models
