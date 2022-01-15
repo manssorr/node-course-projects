@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import validator from 'validator';
 
 // Task => Schema & Model
 const TaskScheme = mongoose.Schema({
