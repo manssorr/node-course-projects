@@ -18,7 +18,7 @@ app.post('/users', (req, res) => {
 			res.status(201).send(user)
 		})
 		.catch((error) => {
-			res.status(400).send(error)
+			res.status(400).send()
 		})
 });
 
@@ -28,18 +28,23 @@ app.get('/users', (req, res) => {
 			res.send(users)
 		})
 		.catch((error) => {
-			res.status(500).send(error)
+			res.status(500).send()
 		})
 });
 
 app.get('/users/:id', (req, res) => {
-	const id = req.params.id;
-	User.findById(id)
-		.then((users) => {
-			res.send(users)
+	const _id = req.params.id;
+
+	User.findById(_id)
+		.then((user) => {
+			if (!user) {
+				return res.status(404).send()
+			}
+
+			res.send(user)
 		})
 		.catch((error) => {
-			res.status(500).send(error)
+			res.status(500).send()
 		})
 });
 
@@ -60,7 +65,7 @@ app.get('/tasks', (req, res) => {
 
 		})
 		.catch(() => {
-			res.status(500).send(error)
+			res.status(500).send()
 		})
 });
 
