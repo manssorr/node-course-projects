@@ -1,8 +1,7 @@
 import express, { request } from 'express';
 import connectDB from './DB/mongoose.mjs';
-import usersRouter from './routers/users.mjs';
-import tasksRouter from './routers/tasks.mjs';
-import bcrypt from 'bcryptjs';
+import usersRouter from './routers/user.mjs';
+import tasksRouter from './routers/task.mjs';
 
 
 const app = express();
