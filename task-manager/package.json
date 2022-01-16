@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "node src/index.mjs",
-    "dev" : "nodemon src/index.mjs"
+    "start": "node src/index.mjs",
+    "dev": "nodemon src/index.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.2",
     "mongodb": "^4.2.2",
     "mongoose": "^6.1.6",

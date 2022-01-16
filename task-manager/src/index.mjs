@@ -2,6 +2,7 @@ import express, { request } from 'express';
 import connectDB from './DB/mongoose.mjs';
 import usersRouter from './routers/users.mjs';
 import tasksRouter from './routers/tasks.mjs';
+import bcrypt from 'bcryptjs';
 
 
 const app = express();
@@ -15,4 +16,4 @@ connectDB();
 
 app.listen(port, () => {
 	console.log(`Port: ${port} now Is OnFire 🔥`)
-});
+}); 
