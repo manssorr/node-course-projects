@@ -1,7 +1,7 @@
 // Setup routers
 import express from 'express';
-
-const router = new express.Router()
+import Task from '../Models/task.mjs';
+const router = express.Router()
 
 router.post('/tasks', async (req, res) => {
 	const task = new Task(req.body)
@@ -69,4 +69,4 @@ router.delete('/tasks/:id', async (req, res) => {
 	}
 })
 
-export default router
+export default router;
