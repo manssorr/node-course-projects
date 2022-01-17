@@ -14,17 +14,17 @@ app.use(tasksRouter)
 connectDB();
 
 
-import jwt from 'jsonwebtoken';
+// import jwt from 'jsonwebtoken';
 
-const myFunction = async () => {
-    const token = jwt.sign({ _id: 'abc123' }, 'thisismynewcourse', { expiresIn: '7 days' })
-    console.log(token)
+// const myFunction = async () => {
+//     const token = jwt.sign({ _id: 'abc123' }, 'thisismynewcourse', { expiresIn: '7 days' })
+//     console.log(token)
 
-    const data = jwt.verify(token, 'thisismynewcourse')
-    console.log(data)
-}
+//     const data = jwt.verify(token, 'thisismynewcourse')
+//     console.log(data)
+// }
 
-myFunction()
+// myFunction()
 
 
 app.listen(port, () => {
