@@ -41,14 +41,21 @@ const UserSchema = new mongoose.Schema({
 				throw new Error('age cant be -Ve');
 			}
 		}
-	}
+	},
+	tokens: [{
+		token: {
+			type: String,
+			required: true
+		}
+	}]
 });
 
 // User => Generate a token by jwt
 UserSchema.methods.generateAuthToken = async function () {
-	const user = this
-
-	const token = jwt.sign({ _id: user._id.toString() }, "Alhamdullah")
+	const user = this;
+	const token = jwt.sign({ _id: user._id.toString() }, "Alhamdullah");
+	user.tokens = user.tokens.concat({ token })
+	await user.save();
 
 	return token;
 }
