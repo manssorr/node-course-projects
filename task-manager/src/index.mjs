@@ -1,5 +1,5 @@
 import express, { request } from 'express';
-import connectDB from './DB/mongoose.mjs';
+import connectDB from './db/mongoose.mjs';
 import usersRouter from './routers/user.mjs';
 import tasksRouter from './routers/task.mjs';
 

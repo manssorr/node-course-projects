@@ -1,6 +1,6 @@
 // Setup routers
 import express from 'express';
-import Task from '../Models/task.mjs';
+import Task from '../models/task.mjs';
 const router = express.Router()
 
 router.post('/tasks', async (req, res) => {

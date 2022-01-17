@@ -1,6 +1,6 @@
 // Setup routers
 import express from 'express';
-import User from '../Models/user.js';
+import User from '../models/user.js';
 const router = express.Router();
 
 router.post('/users', async (req, res) => {
