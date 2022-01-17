@@ -2,6 +2,7 @@
 import express from 'express';
 import User from '../models/user.js';
 const router = express.Router();
+import auth from '../middleware/auth.mjs'
 
 // Signup
 router.post('/users', async (req, res) => {
@@ -25,14 +26,13 @@ router.post('/users/login', async (req, res) => {
 		res.status(400).send(error.message)
 	}
 })
-router.get('/users', async (req, res) => {
-	try {
-		const users = await User.find({})
-		res.send(users)
-	} catch (error) {
-		res.status(500).send()
-	}
+// Show Profile
+router.get('/users/me', auth, async (req, res) => {
+
+	res.send(req.user)
+
 });
+// Show user by id
 router.get('/users/:id', async (req, res) => {
 	const _id = req.params.id;
 
@@ -46,6 +46,7 @@ router.get('/users/:id', async (req, res) => {
 		res.status(500).send()
 	}
 });
+// Update user by id
 router.patch('/users/:id', async (req, res) => {
 	const updates = Object.keys(req.body)
 	const allowedUpdates = ['name', 'email', 'password', 'age']
@@ -66,6 +67,7 @@ router.patch('/users/:id', async (req, res) => {
 		res.status(400).send(error)
 	}
 });
+// Remove user by id
 router.delete('/users/:id', async (req, res) => {
 	try {
 		const user = await User.findByIdAndDelete(req.params.id);
