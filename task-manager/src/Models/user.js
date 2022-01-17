@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import validator from 'validator';
-import bcrypt from 'bcryptjs';
+const bcrypt = require('bcryptjs');
+const validator = require('validator');
+const mongoose = require('mongoose');
 
 // User => Schema & Model
 const UserSchema = new mongoose.Schema({
@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema({
 	},
 	email: {
 		type: String,
+		unique: true,
 		required: true,
 		trim: true,
 		lowercase: true,
@@ -42,14 +43,35 @@ const UserSchema = new mongoose.Schema({
 	}
 });
 
+// User => Check login process
+UserSchema.statics.findByCredentials = async (email, password) => {
+	const user = await User.findOne({ email })
+	if (!user) {
+		throw new Error('Unable to login ⛔️ !')
+	}
+	console.log(password);
+	console.log(user.password);
+	console.log(await bcrypt.compare(password, user.password));
+
+	const isMatch = await bcrypt.compare(password, user.password)
+	if (!isMatch) {
+		throw new Error('Wrong password ❌ !')
+	}
+
+	return user
+}
+
+// Hashing plain text password
 UserSchema.pre('save', async function (next) {
-	const user = this
+	const user = this;
 
 	if (user.isModified('password')) {
 		user.password = await bcrypt.hash(user.password, 8)
 	}
 
-	next()
+	next();
 })
 
-export default mongoose.model('User', UserSchema);
+
+
+module.exports = User = mongoose.model('User', UserSchema)
