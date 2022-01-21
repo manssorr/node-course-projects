@@ -50,19 +50,32 @@ const UserSchema = new mongoose.Schema({
 	}]
 });
 
+// Remove the field of password and token all around the system
+UserSchema.methods.toJSON = function () {
+    const user = this
+    const userObject = user.toObject()
+
+    delete userObject.password
+    delete userObject.tokens
+
+    return userObject
+}
+
 // User => Generate a token by jwt
 UserSchema.methods.generateAuthToken = async function () {
 	const user = this;
-	const token = jwt.sign({ _id: user._id.toString() }, "Alhamdullah");
+	const token = jwt.sign({ _id: user._id.toString() }, 'Alhamdullah');
 	user.tokens = user.tokens.concat({ token })
 	await user.save();
 
+	console.log(token);
 	return token;
 }
 
 // User => Check login process
 UserSchema.statics.findByCredentials = async (email, password) => {
 	const user = await User.findOne({ email })
+
 	if (!user) {
 		throw new Error('Unable to login ⛔️ !')
 	}

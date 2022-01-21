@@ -10,6 +10,7 @@ const TaskScheme = mongoose.Schema({
 		type: Boolean,
 		default: false,
 	},
+	Owner
 })
 
 TaskScheme.pre('save', async function(next) {
