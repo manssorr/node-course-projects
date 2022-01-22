@@ -17,7 +17,7 @@ router.post('/tasks', auth, async (req, res) => {
 	}
 });
 
-router.get('/tasks', async (req, res) => {
+router.get('/tasks', auth, async (req, res) => {
 	try {
 		await req.user.populate('tasks').execPopulate()
 		res.send(req.user.tasks)
