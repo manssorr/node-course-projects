@@ -1,6 +1,6 @@
 // Setup routers
 import express from 'express';
-import Task from '../models/task.mjs';
+import Task from '../models/task.js';
 import auth from '../middleware/auth.mjs'
 const router = new express.Router()
 

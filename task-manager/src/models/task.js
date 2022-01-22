@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 // Task => Schema & Model
-const TaskScheme = mongoose.Schema({
+const TaskSchema = mongoose.Schema({
 	description: {
 		type: String,
 		trim: true,
@@ -17,7 +17,7 @@ const TaskScheme = mongoose.Schema({
 	}
 })
 
-TaskScheme.pre('save', async function(next) {
+TaskSchema.pre('save', async function(next) {
 	const task = this;
 	
 	console.log('Hello boy! ✔️');
@@ -25,4 +25,4 @@ TaskScheme.pre('save', async function(next) {
 	next()
 })
 
-export default mongoose.model('Task', TaskScheme)
+module.exports = Task = mongoose.model('Task', TaskSchema)
