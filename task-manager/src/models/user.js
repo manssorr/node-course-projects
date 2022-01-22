@@ -50,6 +50,12 @@ const UserSchema = new mongoose.Schema({
 	}]
 });
 
+UserSchema.virtual('tasks', {
+    ref: 'Task',
+    localField: '_id',
+    foreignField: 'owner'
+})
+
 // Remove the field of password and token all around the system
 UserSchema.methods.toJSON = function () {
     const user = this
