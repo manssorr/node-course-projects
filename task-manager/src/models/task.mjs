@@ -20,7 +20,7 @@ const TaskScheme = mongoose.Schema({
 TaskScheme.pre('save', async function(next) {
 	const task = this;
 	
-	console.log('Heloo boy! ✔️');
+	console.log('Hello boy! ✔️');
 
 	next()
 })
