@@ -2,7 +2,7 @@
 import express from 'express';
 import Task from '../models/task.mjs';
 import auth from '../middleware/auth.mjs'
-const router = express.Router()
+const router = new express.Router()
 
 router.post('/tasks', auth, async (req, res) => {
 	const task = new Task({
@@ -64,7 +64,6 @@ router.patch('/tasks/:id', auth, async (req, res) => {
 });
 
 router.delete('/tasks/:id', auth, async (req, res) => {
-	const _id = req.params.id
 	try {
 		const task = await Task.findOneAndDelete({ _id: req.params.id, owner: req.user._id });
 
