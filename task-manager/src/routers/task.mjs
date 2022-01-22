@@ -14,7 +14,9 @@ router.post('/tasks', auth, async (req, res) => {
 		res.status(201).send(task)
 	} catch (error) {
 		res.status(400).send(error)
+	}
 });
+
 router.get('/tasks', async (req, res) => {
 	try {
 		await req.user.populate('tasks').execPopulate()
@@ -23,6 +25,7 @@ router.get('/tasks', async (req, res) => {
 		res.status(500).send()
 	}
 });
+
 router.get('/tasks/:id', auth, async (req, res) => {
 	const _id = req.params.id
 	try {
@@ -35,6 +38,7 @@ router.get('/tasks/:id', auth, async (req, res) => {
 		res.status(500).send()
 	}
 });
+
 router.patch('/tasks/:id', auth, async (req, res) => {
 	const updates = Object.keys(req.body)
 	const allowedUpdates = ['description', 'completed']
@@ -57,7 +61,8 @@ router.patch('/tasks/:id', auth, async (req, res) => {
 	} catch (error) {
 		res.status(400).send(error)
 	}
-})
+});
+
 router.delete('/tasks/:id', auth, async (req, res) => {
 	const _id = req.params.id
 	try {
@@ -71,6 +76,6 @@ router.delete('/tasks/:id', auth, async (req, res) => {
 	} catch (error) {
 		res.status(500).send()
 	}
-})
+});
 
 export default router;
