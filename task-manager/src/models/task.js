@@ -15,6 +15,8 @@ const TaskSchema = mongoose.Schema({
 		required: true,
 		ref: 'User',
 	}
+}, {
+	timestamps: true,
 })
 
 module.exports = Task = mongoose.model('Task', TaskSchema)
