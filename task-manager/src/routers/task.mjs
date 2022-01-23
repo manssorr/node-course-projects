@@ -28,6 +28,8 @@ router.get('/tasks', auth, async (req, res) => {
 		match.completed = req.query.completed === 'true'
 	}
 
+	if (req.query.sortBy) {
+		
 	try {
 		await req.user.populate({
 			path: 'tasks',
