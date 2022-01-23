@@ -29,18 +29,20 @@ router.get('/tasks', auth, async (req, res) => {
 	}
 
 	if (req.query.sortBy) {
-		
-	try {
-		await req.user.populate({
-			path: 'tasks',
-			match
-		})
-		// .execPopulate()
-		res.send(req.user.tasks)
-	} catch (error) {
-		res.status(500).send('No tasks found!')
-	}
-});
+		const parts = req.query.sortBy.split(':')
+
+
+		try {
+			await req.user.populate({
+				path: 'tasks',
+				match
+			})
+			// .execPopulate()
+			res.send(req.user.tasks)
+		} catch (error) {
+			res.status(500).send('No tasks found!')
+		}
+	});
 
 router.get('/tasks/:id', auth, async (req, res) => {
 	const _id = req.params.id
