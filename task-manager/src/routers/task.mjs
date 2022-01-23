@@ -22,6 +22,7 @@ router.post('/tasks', auth, async (req, res) => {
 // GET /tasks?sortBy=createdAt:desc
 router.get('/tasks', auth, async (req, res) => {
 	const match = {}
+	const sort = {}
 
 	if (req.query.completed) {
 		match.completed = req.query.completed === 'true'
