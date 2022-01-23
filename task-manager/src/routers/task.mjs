@@ -30,19 +30,20 @@ router.get('/tasks', auth, async (req, res) => {
 
 	if (req.query.sortBy) {
 		const parts = req.query.sortBy.split(':')
-        sort[parts[0]] = parts[1] === 'desc' ? -1 : 1
+		sort[parts[0]] = parts[1] === 'desc' ? -1 : 1
+	}
 
-		try {
-			await req.user.populate({
-				path: 'tasks',
-				match
-			})
-			// .execPopulate()
-			res.send(req.user.tasks)
-		} catch (error) {
-			res.status(500).send('No tasks found!')
-		}
-	});
+	try {
+		await req.user.populate({
+			path: 'tasks',
+			match
+		})
+		// .execPopulate()
+		res.send(req.user.tasks)
+	} catch (error) {
+		res.status(500).send('No tasks found!')
+	}
+});
 
 router.get('/tasks/:id', auth, async (req, res) => {
 	const _id = req.params.id
