@@ -37,6 +37,8 @@ router.get('/tasks', auth, async (req, res) => {
 		await req.user.populate({
 			path: 'tasks',
 			match,
+            options: {
+
 		})
 		// .execPopulate()
 		res.send(req.user.tasks)
