@@ -50,7 +50,7 @@ router.post('/users/logoutAll', auth, async (req, res) => {
 		res.status(500).send()
 	}
 })
-     
+      
 // Show Profile
 router.get('/users/me', auth, async (req, res) => {
 	res.send(req.user)
