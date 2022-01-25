@@ -4,6 +4,7 @@ import User from '../models/user.js';
 const router = express.Router();
 import auth from '../middleware/auth.mjs'
 import multer from 'multer';
+import sharp from'sharp';
 
 // Signup
 router.post('/users', async (req, res) => {
