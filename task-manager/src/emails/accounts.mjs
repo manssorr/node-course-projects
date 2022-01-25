@@ -12,5 +12,5 @@ const sendWelcomeEmail = (email, name) => {
 		text: `Welcome to the app, ${name}. Let me know how you get along with the app.`
 	})
 }
-sendCancelationEmail
-export { sendWelcomeEmail,  }
+
+export { sendWelcomeEmail, sendCancelationEmail }
