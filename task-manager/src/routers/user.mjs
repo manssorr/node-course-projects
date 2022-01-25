@@ -3,6 +3,7 @@ import express from 'express';
 import User from '../models/user.js';
 const router = express.Router();
 import auth from '../middleware/auth.mjs'
+import multer from 'multer';
 
 // Signup
 router.post('/users', async (req, res) => {
@@ -98,6 +99,14 @@ router.delete('/users/me', auth, async (req, res) => {
 	} catch (error) {
 		res.status(500).send()
 	}
+})
+
+const upload = multer({
+	dest: 'avatars'
+})
+
+router.post('/users/me/avatar', upload.single('avatar'), (req, res) => {
+	res.send()
 })
 
 export default router;
