@@ -5,12 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.mjs",
-    "dev": "env-cmd -f ./config/dev.env nodemon src/index.mjs",
-    "test": "env-cmd -f ./config/test.env jest --watch",
-    "dev-test": "env-cmd -f ./config/test.env jest --watchAll --detectOpenHandles"
-  },
-  "jest": {
-    "testEnvironment": "node"
+    "dev": "env-cmd -f ./config/dev.env nodemon src/index.mjs"
   },
   "keywords": [],
   "author": "",
@@ -28,8 +23,6 @@
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
-    "jest": "^27.4.7",
-    "nodemon": "^2.0.15",
-    "supertest": "^6.2.2"
+    "nodemon": "^2.0.15"
   }
 }
